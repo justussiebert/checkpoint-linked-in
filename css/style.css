@@ -1,0 +1,83 @@
+html {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #ccc;
+}
+
+.containerContentAll {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+main {
+}
+
+#container-contact-suggestions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 20px;
+  background-color: #fff;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  padding: 1.5vmin;
+}
+
+#container-contact-suggestions > article {
+  _background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  padding: 1vmin;
+  background-image: url(../img/geisterbusch-glanrinder-justus-siebert-2019-06-26.jpg);
+  background-size: 100% 30%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+#container-contact-suggestions > article > .btnRemove {
+  position: absolute;
+  top: 1vmin;
+  right: 1vmin;
+  width: 3vmin;
+  height: 3vmin;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(64, 64, 64, 0.8);
+  _display: flex;
+  _flex-direction: column;
+  _justify-content: center;
+  _align-items: center;
+}
+
+.btnRemove::before,
+.btnRemove::after {
+  position: absolute;
+  top: 50%;
+  content: "";
+  width: 3px;
+  height: 80%;
+  background-color: #fff;
+  transform-origin: center center;
+}
+
+.btnRemove::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.btnRemove::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
