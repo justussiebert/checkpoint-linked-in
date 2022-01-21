@@ -48,6 +48,7 @@ main {
   background-size: 100% 30%;
   background-repeat: no-repeat;
   position: relative;
+  text-align: center;
 }
 #container-contact-suggestions > article > .btnRemove {
   position: absolute;
@@ -80,4 +81,9 @@ main {
 }
 .btnRemove::after {
   transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+#container-contact-suggestions > article picture img {
+  border-radius: 50%;
+  _overflow: hidden;
 }
