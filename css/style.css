@@ -24,18 +24,54 @@ body {
   max-width: 1000px;
 }
 
-main {
+#header-invitations {
+  margin: 1vmin 0 2vmin 0;
+}
+#header-invitations {
+  display: inline-block;
+  width: 100%;
+}
+.paragraphHeaderInvitationsLeft,
+.paragraphHeaderInvitationsRight {
+  display: inline-block;
+}
+.paragraphHeaderInvitationsLeft {
+  float: left;
+}
+.paragraphHeaderInvitationsRight {
+  float: right;
 }
 
-#container-contact-suggestions {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  column-gap: 10px;
-  row-gap: 20px;
+.headerCards {
+  display: inline-block;
+  width: 100%;
+}
+
+.headerCards h1 {
+  float: left;
+}
+.headerCards .paragraphRightHeaderCards {
+  float: right;
+}
+
+main,
+#header-invitations {
   background-color: #fff;
   border: 1px solid #808080;
   border-radius: 5px;
   padding: 1.5vmin;
+}
+
+#container-contact-suggestions {
+  display: grid;
+  _grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  column-gap: 10px;
+  row-gap: 20px;
+  _background-color: #fff;
+  _border: 1px solid #808080;
+  _border-radius: 5px;
+  _padding: 1.5vmin;
 }
 
 #container-contact-suggestions > article {
@@ -45,7 +81,7 @@ main {
   overflow: hidden;
   padding: 1vmin;
   background-image: url(../img/geisterbusch-glanrinder-justus-siebert-2019-06-26.jpg);
-  background-size: 100% 30%;
+  background-size: 100% 26%;
   background-repeat: no-repeat;
   position: relative;
   text-align: center;
@@ -89,9 +125,36 @@ main {
 }
 
 .btnConnect {
+  width: 100%;
+  background: none;
+  border: 2px solid blue;
+  color: blue;
+  line-height: 3rem;
+  border-radius: 1.5rem;
 }
 
 #container-contact-suggestions > article picture img {
   border-radius: 50%;
+  margin-top: 3vmin;
   _overflow: hidden;
+}
+
+.paragraphConnections::before {
+  content: "\26AD";
+  font-size: 2rem;
+  margin-right: 5px;
+  top: 3px;
+  position: relative;
+}
+
+@media screen and (min-width: 767px) {
+  #container-contact-suggestions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #container-contact-suggestions {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 }

@@ -1,10 +1,15 @@
 const url = "https://dummy-apis.netlify.app/api/contact-suggestions";
-let countContacts = 8;
+const countContacts = 8;
+let numberIdOfNewContact = 0;
+let countPendingInvitations = 0;
+const paragraphPendingInvitations = document.querySelector(
+  "#paragraph-count-invitations"
+);
 const containerContacts = document.querySelector(
   "#container-contact-suggestions"
 );
 
-function getAllContactSuggestions(numberContacts) {
+function getAllContactSuggestionsAndCreateCard(numberContacts) {
   const allContactsFromApi = fetch(url + "?count=" + numberContacts)
     .then((response) => {
       console.log(response.status);
@@ -19,9 +24,10 @@ function getAllContactSuggestions(numberContacts) {
         "#container-contact-suggestions"
       );
       for (let i = 0; i < dataComplete.length; i++) {
-        console.log("Last Name: ", dataComplete[i].name.last);
+        //console.log("Last Name: ", dataComplete[i].name.last);
         const contactComplete = document.createElement("article");
-
+        const newId = i + numberIdOfNewContact;
+        contactComplete.setAttribute("id", "card-id-" + newId);
         // Portrait:
         const contactPortraitContainer = document.createElement("picture");
         const contactPortraitImage = document.createElement("img");
@@ -40,10 +46,9 @@ function getAllContactSuggestions(numberContacts) {
           dataComplete[i].name.last;
 
         contactTitle.innerText = contactNameComplete;
-        //contactTitle.appendChild(contactNameComplete);
         contactComplete.appendChild(contactTitle);
 
-        // Function:
+        // Function / Profession:
         const contactFunction = document.createElement("h3");
         contactFunction.innerText = dataComplete[i].title;
         contactComplete.appendChild(contactFunction);
@@ -58,12 +63,35 @@ function getAllContactSuggestions(numberContacts) {
         // Button connect:
         const contactButtonConnect = document.createElement("button");
         contactButtonConnect.classList.add("btnConnect");
+        contactButtonConnect.setAttribute("id", "button-connect-" + newId);
+        contactButtonConnect.setAttribute("value", "isPending");
+        //eval(contactButtonConnect + "xx");
         contactButtonConnect.innerText = "connect";
         contactComplete.appendChild(contactButtonConnect);
+        //console.log(contactButtonConnect.id);
+        contactButtonConnect.addEventListener("click", function (e) {
+          console.log(e.target.value);
+          if (e.target.value === "isPending") {
+            e.target.value = "isConnected";
+            contactButtonConnect.innerText = "pending";
+            countPendingInvitations++;
+          } else {
+            e.target.value = "isPending";
+            contactButtonConnect.innerText = "Connect";
+            countPendingInvitations--;
+          }
+          paragraphPendingInvitations.innerText =
+            countPendingInvitations + " pending invitations";
+        });
 
         // Button remove:
         const contactButtonRemove = document.createElement("button");
         contactButtonRemove.classList.add("btnRemove");
+        contactButtonRemove.setAttribute("value", "card-id-" + newId);
+        contactButtonRemove.addEventListener("click", function (e) {
+          //console.log(e.target.value);
+          removeThisCard(e.target.value);
+        });
         contactComplete.appendChild(contactButtonRemove);
 
         // Background-image:
@@ -78,4 +106,14 @@ function getAllContactSuggestions(numberContacts) {
     });
   //console.log();
 }
-getAllContactSuggestions(countContacts);
+
+function removeThisCard(cardId) {
+  console.log("Card id: ", cardId);
+  numberIdOfNewContact = countContacts + 1;
+  console.log("id of next card: ", numberIdOfNewContact);
+  let cardTobeRemoved = document.getElementById(cardId);
+  cardTobeRemoved.remove();
+  getAllContactSuggestionsAndCreateCard(1);
+}
+
+getAllContactSuggestionsAndCreateCard(countContacts);
