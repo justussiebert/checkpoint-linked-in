@@ -1,0 +1,167 @@
+html {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #ccc;
+}
+
+.containerContentAll {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+#header-invitations {
+  margin: 1vmin 0 2vmin 0;
+}
+#header-invitations {
+  display: inline-block;
+  width: 100%;
+}
+.paragraphHeaderInvitationsLeft,
+.paragraphHeaderInvitationsRight {
+  display: inline-block;
+}
+.paragraphHeaderInvitationsLeft {
+  float: left;
+}
+.paragraphHeaderInvitationsRight {
+  float: right;
+}
+
+.headerCards {
+  display: inline-block;
+  width: 100%;
+}
+
+.headerCards h1 {
+  float: left;
+}
+.headerCards .paragraphRightHeaderCards {
+  float: right;
+}
+
+main,
+#header-invitations {
+  background-color: #fff;
+  border: 1px solid #808080;
+  border-radius: 5px;
+  padding: 1.5vmin;
+}
+
+#container-contact-suggestions {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 10px;
+  row-gap: 20px;
+}
+
+#container-contact-suggestions > article {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  padding: 1vmin;
+  background-image: url(../img/geisterbusch-glanrinder-justus-siebert-2019-06-26.jpg);
+  background-size: 100% 26%;
+  background-repeat: no-repeat;
+  position: relative;
+  text-align: center;
+  transition: box-shadow 0.4s linear;
+}
+#container-contact-suggestions > article:hover {
+  box-shadow: 3px 3px 5px #808080;
+}
+
+#container-contact-suggestions > article > .btnRemove {
+  position: absolute;
+  top: 1vmin;
+  right: 1vmin;
+  width: 3vmin;
+  height: 3vmin;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(64, 64, 64, 0.8);
+  transition: transform 0.2s linear;
+}
+.btnConnect,
+.btnRemove {
+  cursor: pointer;
+}
+
+.btnRemove::before,
+.btnRemove::after {
+  position: absolute;
+  top: 50%;
+  content: "";
+  width: 3px;
+  height: 70%;
+  background-color: #fff;
+  transform-origin: center center;
+}
+.btnRemove:hover {
+  transform: scale(1.2);
+}
+
+.btnRemove::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.btnRemove::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.btnConnect {
+  width: 100%;
+  background: none;
+  border: 2px solid blue;
+  color: blue;
+  line-height: 3rem;
+  font-size: 2.8vmin;
+  border-radius: 1.5rem;
+  transition: background-color 0.8s linear;
+}
+.btnConnect:hover {
+  background-color: azure;
+}
+
+.btnConnectActive {
+  background-color: #ccffff;
+}
+
+#container-contact-suggestions > article picture img {
+  border-radius: 50%;
+  margin-top: 3vmin;
+  _overflow: hidden;
+}
+
+.paragraphConnections::before {
+  content: "\26AD";
+  font-size: 2rem;
+  margin-right: 5px;
+  top: 3px;
+  position: relative;
+}
+
+@media screen and (min-width: 767px) {
+  #container-contact-suggestions {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  #container-contact-suggestions {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
