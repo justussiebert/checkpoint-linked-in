@@ -12,8 +12,8 @@ const containerContacts = document.querySelector(
 function getAllContactSuggestionsAndCreateCard(numberContacts) {
   const allContactsFromApi = fetch(url + "?count=" + numberContacts)
     .then((response) => {
-      console.log(response.status);
-      console.log(response.ok);
+      //console.log(response.status);
+      //console.log(response.ok);
       if (response.ok) {
         return response.json();
       }
@@ -28,6 +28,7 @@ function getAllContactSuggestionsAndCreateCard(numberContacts) {
         const contactComplete = document.createElement("article");
         const newId = i + numberIdOfNewContact;
         contactComplete.setAttribute("id", "card-id-" + newId);
+
         // Portrait:
         const contactPortraitContainer = document.createElement("picture");
         const contactPortraitImage = document.createElement("img");
@@ -65,7 +66,6 @@ function getAllContactSuggestionsAndCreateCard(numberContacts) {
         contactButtonConnect.classList.add("btnConnect");
         contactButtonConnect.setAttribute("id", "button-connect-" + newId);
         contactButtonConnect.setAttribute("value", "isPending");
-        //eval(contactButtonConnect + "xx");
         contactButtonConnect.innerText = "connect";
         contactComplete.appendChild(contactButtonConnect);
         //console.log(contactButtonConnect.id);
@@ -74,10 +74,12 @@ function getAllContactSuggestionsAndCreateCard(numberContacts) {
           if (e.target.value === "isPending") {
             e.target.value = "isConnected";
             contactButtonConnect.innerText = "pending";
+            contactButtonConnect.classList.add("btnConnectActive");
             countPendingInvitations++;
           } else {
             e.target.value = "isPending";
             contactButtonConnect.innerText = "Connect";
+            contactButtonConnect.classList.remove("btnConnectActive");
             countPendingInvitations--;
           }
           paragraphPendingInvitations.innerText =
@@ -89,7 +91,6 @@ function getAllContactSuggestionsAndCreateCard(numberContacts) {
         contactButtonRemove.classList.add("btnRemove");
         contactButtonRemove.setAttribute("value", "card-id-" + newId);
         contactButtonRemove.addEventListener("click", function (e) {
-          //console.log(e.target.value);
           removeThisCard(e.target.value);
         });
         contactComplete.appendChild(contactButtonRemove);
@@ -104,13 +105,10 @@ function getAllContactSuggestionsAndCreateCard(numberContacts) {
         containerContacts.appendChild(contactComplete);
       }
     });
-  //console.log();
 }
 
 function removeThisCard(cardId) {
-  console.log("Card id: ", cardId);
   numberIdOfNewContact = countContacts + 1;
-  console.log("id of next card: ", numberIdOfNewContact);
   let cardTobeRemoved = document.getElementById(cardId);
   cardTobeRemoved.remove();
   getAllContactSuggestionsAndCreateCard(1);
